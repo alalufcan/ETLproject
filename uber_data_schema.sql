@@ -10,6 +10,9 @@ CREATE TABLE "uber_rides_random" (
 	"Month" int not null,
 	"Year" int not null,
 	"Date" int not null,
+    "distance" float NOT NULL,
+    "surge_multiplier" float NOT NULL,
+    "product_id" varchar NOT NULL,
     CONSTRAINT "pk_uber_rides_random" PRIMARY KEY (
         "id"
      )
@@ -33,8 +36,7 @@ CREATE TABLE "boston_weather" (
 );
 select * from boston_weather;
 
-SELECT uber_rides_random.distance,uber_rides_random.source, uber_rides_random.destination, uber_rides_random.price,weather.High, weather.Low
+SELECT "uber_rides_random"."distance","boston_weather"."Precip.(inch)", "boston_weather"."High",  "uber_rides_random"."destination","uber_rides_random"."price","boston_weather"."Low", "uber_rides_random"."source", "uber_rides_random"."distance","uber_rides_random"."surge_multiplier", "uber_rides_random"."product_id"
 FROM uber_rides_random
 INNER JOIN boston_weather 
-ON uber_rides_random.Date = boston_weather.Date;
-
+ON uber_rides_random."Date" = boston_weather."Date";
